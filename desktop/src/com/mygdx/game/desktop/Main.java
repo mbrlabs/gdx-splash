@@ -31,7 +31,7 @@ public class Main {
 
     private static void launchSplashScreen() {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-        config.setTitle("Mundus");
+        config.setTitle("Loading Mundus");
         config.setResizable(false);
         config.setWindowedMode(SplashScreen.SCREEN_WIDTH, SplashScreen.SCREEN_HEIGHT);
         config.setDecorated(false);

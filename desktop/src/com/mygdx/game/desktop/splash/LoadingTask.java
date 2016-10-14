@@ -6,7 +6,7 @@ import com.mygdx.game.desktop.async.AsyncTask;
 
 public class LoadingTask extends AsyncTask {
 
-    private static final int DURATION = 1000;
+    private static final int DURATION = 3000;
     private static final int STEP = 50;
 
     private Texture texture;

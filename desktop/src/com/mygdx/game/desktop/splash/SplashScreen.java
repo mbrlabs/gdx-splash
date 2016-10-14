@@ -24,7 +24,8 @@ public class SplashScreen extends ApplicationAdapter {
     public static final int SCREEN_WIDTH = 700;
 
     private static final int PROGRESS_BAR_HEIGHT = 15;
-    private static final Color PROGRESS_BAR_COLOR = new Color(0x00b695ff);
+    private static final Color TEAL = new Color(0x00b695ff);
+    private static final Color WHITE = Color.WHITE.cpy();
 
     private ShapeRenderer shapeRenderer;
     private SpriteBatch batch;
@@ -40,7 +41,7 @@ public class SplashScreen extends ApplicationAdapter {
         VisUI.load();
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
-        img = new Texture("MundusSplash.png");
+        img = new Texture("splash.png");
         window = ((Lwjgl3Graphics)Gdx.graphics).getWindow();
 
         // start loading
@@ -51,8 +52,6 @@ public class SplashScreen extends ApplicationAdapter {
             e.printStackTrace();
         }
     }
-
-
 
     @Override
     public void render () {
@@ -68,7 +67,7 @@ public class SplashScreen extends ApplicationAdapter {
         // draw progress bar
         int width = (int) (Gdx.graphics.getWidth() * (loadingTask.getProgress() / 100f));
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(PROGRESS_BAR_COLOR);
+        shapeRenderer.setColor(WHITE);
         shapeRenderer.rect(0, 0, width, PROGRESS_BAR_HEIGHT);
         shapeRenderer.end();
 
@@ -84,6 +83,7 @@ public class SplashScreen extends ApplicationAdapter {
         // config for main window
         Lwjgl3Application app = (Lwjgl3Application) Gdx.app;
         Lwjgl3WindowConfiguration config = new Lwjgl3WindowConfiguration();
+        config.setTitle("Mundus");
         Graphics.DisplayMode dm = Lwjgl3ApplicationConfiguration.getDisplayMode();
         if (System.getProperties().getProperty("os.name").toLowerCase().contains("mac")) {
             config.setWindowedMode((int) (dm.width * 0.80f), (int) (dm.height * 0.80f));
