@@ -6,7 +6,7 @@ import com.mygdx.game.desktop.async.AsyncTask;
 
 public class LoadingTask extends AsyncTask {
 
-    private static final int DURATION = 3000;
+    private static final int DURATION = 1000;
     private static final int STEP = 50;
 
     private Texture texture;
@@ -31,12 +31,9 @@ public class LoadingTask extends AsyncTask {
         }
 
         // load assets on main thread
-        executeOnOpenGL(new Runnable() {
-            @Override
-            public void run() {
-                texture = new Texture("badlogic.jpg");
-                done = true;
-            }
+        executeOnOpenGL(() -> {
+            texture = new Texture("badlogic.jpg");
+            done = true;
         });
     }
 

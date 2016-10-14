@@ -2,6 +2,7 @@ package com.mygdx.game.desktop;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.mygdx.game.desktop.lock.LockFile;
 import com.mygdx.game.desktop.lock.LockWindow;
 import com.mygdx.game.desktop.splash.SplashScreen;
 
@@ -21,8 +22,7 @@ public class Main {
         }
 
         // Start Log instance
-        File lockFile = new File(LOCK_FILE);
-        if(lockFile.exists()) {
+        if(LockFile.exists()) {
             launchLockWindow();
         } else {
             launchSplashScreen();

@@ -19,11 +19,7 @@ public class LockWindow extends ApplicationAdapter {
     public static final int HEIGHT = 150;
     public static final int WIDTH = 500;
 
-    private Lwjgl3Window window;
-    private LoadingTask loadingTask;
-
     private Stage stage;
-    private VisProgressBar progressBar;
 
     @Override
     public void create() {
