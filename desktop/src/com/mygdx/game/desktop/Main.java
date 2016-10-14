@@ -2,16 +2,24 @@ package com.mygdx.game.desktop;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.mygdx.game.desktop.splash.LockWindow;
+import com.mygdx.game.desktop.lock.LockWindow;
 import com.mygdx.game.desktop.splash.SplashScreen;
 
 import java.io.File;
 
-public class DesktopLauncher {
+public class Main {
 
-    public static final String LOCK_FILE = "/home/marcus/.mundus/.lock";
+    public static final String REGISTRY = "/home/marcus/.mundus/";
+    public static final String LOCK_FILE = REGISTRY + ".lock";
+    public static final String ICON_CACHE = REGISTRY + "cache/iconCache/";
 
     public static void main(String[] arg) {
+        // ensure we have a registry
+        File registry = new File(REGISTRY);
+        if(!registry.exists()) {
+            registry.mkdirs();
+        }
+
         // Start Log instance
         File lockFile = new File(LOCK_FILE);
         if(lockFile.exists()) {
@@ -25,7 +33,7 @@ public class DesktopLauncher {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setTitle("Mundus");
         config.setResizable(false);
-        config.setWindowedMode(SplashScreen.WIDTH, SplashScreen.HEIGHT);
+        config.setWindowedMode(SplashScreen.SCREEN_WIDTH, SplashScreen.SCREEN_HEIGHT);
         config.setDecorated(false);
         config.setWindowPosition(-1, -1);
         new Lwjgl3Application(new SplashScreen(), config);

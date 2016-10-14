@@ -6,10 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.kotcrab.vis.ui.VisUI;
+import com.mygdx.game.desktop.icon.MundusIcon;
 
-/**
- * Created by marcus on 10/14/16.
- */
 
 public class MainWindow extends ApplicationAdapter {
 
@@ -23,6 +21,7 @@ public class MainWindow extends ApplicationAdapter {
 
     @Override
     public void create () {
+        MundusIcon.setIcon();
         batch = new SpriteBatch();
     }
 
