@@ -25,6 +25,8 @@ public class Main {
         if(LockFile.exists()) {
             launchLockWindow();
         } else {
+            LockFile.create();
+            LockFile.deleteOnExit();
             launchSplashScreen();
         }
     }

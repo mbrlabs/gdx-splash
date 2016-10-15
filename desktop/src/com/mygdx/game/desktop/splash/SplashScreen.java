@@ -91,10 +91,6 @@ public class SplashScreen extends ApplicationAdapter {
             config.setWindowedMode((int) (dm.width * 0.95f), (int) (dm.height * 0.95f));
         }
 
-        // create lock file & schedule for deleting
-        LockFile.create();
-        LockFile.deleteOnExit();
-
         // start main window and close this one
         app.newWindow(new MainWindow(loadingTask.getTexture()), config);
         window.closeWindow();
