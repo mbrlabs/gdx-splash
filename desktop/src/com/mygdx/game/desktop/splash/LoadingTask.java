@@ -1,7 +1,7 @@
 package com.mygdx.game.desktop.splash;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.mygdx.game.desktop.async.AsyncTask;
+import com.kotcrab.vis.ui.util.async.AsyncTask;
 
 
 public class LoadingTask extends AsyncTask {
@@ -19,8 +19,7 @@ public class LoadingTask extends AsyncTask {
     }
 
     @Override
-    protected void execute() throws Exception {
-
+    protected void doInBackground() throws Exception {
         // "load"
         while(progress < DURATION) {
             Thread.sleep(STEP);
@@ -31,7 +30,7 @@ public class LoadingTask extends AsyncTask {
         }
 
         // load assets on main thread
-        executeOnOpenGL(() -> {
+        executeOnGdx(() -> {
             texture = new Texture("badlogic.jpg");
             done = true;
         });
@@ -49,4 +48,5 @@ public class LoadingTask extends AsyncTask {
     public Texture getTexture() {
         return texture;
     }
+
 }

@@ -1,11 +1,11 @@
 package com.mygdx.game.desktop.lock;
 
 
-import com.mygdx.game.desktop.Main;
+import java.io.File;
 
 import org.apache.commons.io.FileUtils;
 
-import java.io.File;
+import com.mygdx.game.desktop.Main;
 
 
 public class LockFile {

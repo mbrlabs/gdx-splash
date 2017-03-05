@@ -3,11 +3,7 @@ package com.mygdx.game.desktop.splash;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Graphics;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Window;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3WindowConfiguration;
+import com.badlogic.gdx.backends.lwjgl3.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -44,7 +40,7 @@ public class SplashScreen extends ApplicationAdapter {
         // start loading
         loadingTask = new LoadingTask();
         try {
-            loadingTask.start();
+            loadingTask.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }

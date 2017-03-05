@@ -1,12 +1,12 @@
 package com.mygdx.game.desktop;
 
+import java.io.File;
+
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.mygdx.game.desktop.lock.LockFile;
 import com.mygdx.game.desktop.lock.LockWindow;
 import com.mygdx.game.desktop.splash.SplashScreen;
-
-import java.io.File;
 
 public class Main {
 
