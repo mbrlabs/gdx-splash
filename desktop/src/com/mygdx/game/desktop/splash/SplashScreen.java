@@ -23,7 +23,7 @@ public class SplashScreen extends ApplicationAdapter {
     public static final int SCREEN_HEIGHT = 460;
     public static final int SCREEN_WIDTH = 700;
 
-    private static final int PROGRESS_BAR_HEIGHT = 15;
+    private static final int PROGRESS_BAR_HEIGHT = 10;
     private static final Color TEAL = new Color(0x00b695ff);
     private static final Color WHITE = Color.WHITE.cpy();
 
@@ -41,7 +41,7 @@ public class SplashScreen extends ApplicationAdapter {
         VisUI.load();
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
-        img = new Texture("splash.png");
+        img = new Texture("MundusSplash.png");
         window = ((Lwjgl3Graphics)Gdx.graphics).getWindow();
 
         // start loading

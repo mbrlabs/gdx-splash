@@ -18,24 +18,13 @@ package com.mygdx.game.desktop.async;
 
 /**
  * Listener for {@link AsyncTask}
- * @author Kotcrab
+ *
+ * @author Kotcrab, mbrlabs
  */
 public interface AsyncTaskListener {
-	default void messageChanged(String newMsg) {
-
-	}
-
-	default void progressChanged(int newProgressPercent) {
-
-	}
-
-	void finished();
-
-	default void failed(String reason) {
-
-	}
-
-	default void failed(String reason, Exception ex) {
-
-	}
+    void messageChanged(String newMsg);
+    void progressChanged(int newProgressPercent);
+    void finished();
+    void failed(String reason);
+    void failed(String reason, Exception ex);
 }

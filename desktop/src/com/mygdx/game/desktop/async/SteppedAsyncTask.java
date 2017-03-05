@@ -18,20 +18,20 @@ package com.mygdx.game.desktop.async;
 
 /** @author Kotcrab */
 public abstract class SteppedAsyncTask extends AsyncTask {
-	private int step;
-	private int totalSteps;
+    private int step;
+    private int totalSteps;
 
-	public SteppedAsyncTask (String threadName) {
-		super(threadName);
-	}
+    public SteppedAsyncTask(String threadName) {
+        super(threadName);
+    }
 
-	public void setTotalSteps (int totalSteps) {
-		this.totalSteps = totalSteps;
-		this.step = 0;
-		setProgressPercent(0);
-	}
+    public void setTotalSteps(int totalSteps) {
+        this.totalSteps = totalSteps;
+        this.step = 0;
+        setProgressPercent(0);
+    }
 
-	protected void nextStep () {
-		setProgressPercent(++step * 100 / totalSteps);
-	}
+    protected void nextStep() {
+        setProgressPercent(++step * 100 / totalSteps);
+    }
 }

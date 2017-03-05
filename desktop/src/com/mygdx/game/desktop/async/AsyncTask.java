@@ -21,100 +21,121 @@ import com.badlogic.gdx.Gdx;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
 
+/** @author Kotcrab, mbrlabs */
 public abstract class AsyncTask {
-	private Thread thread;
-	private String threadName;
+    private Thread thread;
+    private String threadName;
 
-	private int progressPercent;
-	private String message;
+    private int progressPercent;
+    private String message;
 
-	private AsyncTaskListener listener;
+    private AsyncTaskListener listener;
 
-	public AsyncTask (String threadName) {
-		this.threadName = threadName;
-		Runnable runnable = () -> {
-			try {
-				execute();
-			} catch (Exception e) {
-				Gdx.app.postRunnable(() -> {
-					failed(e.getMessage(), e);
-				});
-			}
+    public AsyncTask(String threadName) {
+        this.threadName = threadName;
 
-			Gdx.app.postRunnable(() -> {
-				if (listener != null) listener.finished();
-			});
-		};
-		thread = new Thread(runnable, threadName);
-	}
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    execute();
+                } catch (final Exception e) {
+                    Gdx.app.postRunnable(new Runnable() {
+                        @Override
+                        public void run() {
+                            failed(e.getMessage(), e);
+                        }
+                    });
+                }
 
-	public void start () {
-		thread.start();
-	}
+                Gdx.app.postRunnable(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (listener != null) listener.finished();
+                    }
+                });
+            }
+        };
 
-	protected void failed (String reason) {
-		if (listener != null) listener.failed(reason);
-	}
+        thread = new Thread(runnable, threadName);
+    }
 
-	protected void failed (String reason, Exception ex) {
-		if (listener != null) listener.failed(reason, ex);
-	}
+    public void start() {
+        thread.start();
+    }
 
-	protected abstract void execute () throws Exception;
+    protected void failed(String reason) {
+        if (listener != null) listener.failed(reason);
+    }
 
-	/**
-	 * Executes runnable on OpenGL thread. This methods blocks until runnable finished executing. Note that this
-	 * will also block main render thread.
-	 */
-	protected void executeOnOpenGL (final Runnable runnable) {
-		final CountDownLatch latch = new CountDownLatch(1);
+    protected void failed(String reason, Exception ex) {
+        if (listener != null) listener.failed(reason, ex);
+    }
 
-		AtomicReference<Exception> exceptionAt = new AtomicReference<>();
+    protected abstract void execute() throws Exception;
 
-		Gdx.app.postRunnable(() -> {
-			try {
-				runnable.run();
-			} catch (Exception e) {
-				exceptionAt.set(e);
-			}
-			latch.countDown();
-		});
+    /**
+     * Executes runnable on OpenGL thread. This methods blocks until runnable
+     * finished executing. Note that this will also block main render thread.
+     */
+    protected void executeOnOpenGL(final Runnable runnable) {
+        final CountDownLatch latch = new CountDownLatch(1);
 
-		try {
-			latch.await();
+        final AtomicReference<Exception> exceptionAt = new AtomicReference<Exception>();
 
-			Exception e = exceptionAt.get();
-			if (e != null) {
-				Gdx.app.postRunnable(() -> {
-					failed(e.getMessage(), e);
-				});
-			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+        Gdx.app.postRunnable(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    runnable.run();
+                } catch (Exception e) {
+                    exceptionAt.set(e);
+                }
+                latch.countDown();
+            }
+        });
 
-	public int getProgressPercent () {
-		return progressPercent;
-	}
+        try {
+            latch.await();
 
-	public void setProgressPercent (int progressPercent) {
-		this.progressPercent = progressPercent;
-		if (listener != null) listener.progressChanged(progressPercent);
-	}
+            final Exception e = exceptionAt.get();
+            if (e != null) {
+                Gdx.app.postRunnable(new Runnable() {
+                    @Override
+                    public void run() {
+                        failed(e.getMessage(), e);
+                    }
+                });
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
-	public String getMessage () {
-		return message;
-	}
+    public int getProgressPercent() {
+        return progressPercent;
+    }
 
-	public void setMessage (String message) {
-		this.message = message;
-		Gdx.app.postRunnable(() -> {
-			if (listener != null) listener.messageChanged(message);
-		});
-	}
+    public void setProgressPercent(int progressPercent) {
+        this.progressPercent = progressPercent;
+        if (listener != null) listener.progressChanged(progressPercent);
+    }
 
-	public void setListener (AsyncTaskListener listener) {
-		this.listener = listener;
-	}
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(final String message) {
+        this.message = message;
+        Gdx.app.postRunnable(new Runnable() {
+            @Override
+            public void run() {
+                if (listener != null) listener.messageChanged(message);
+            }
+        });
+    }
+
+    public void setListener(AsyncTaskListener listener) {
+        this.listener = listener;
+    }
 }
