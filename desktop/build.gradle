@@ -3,8 +3,8 @@ apply plugin: "java"
 sourceCompatibility = 1.8
 sourceSets.main.java.srcDirs = [ "src/" ]
 
-project.ext.mainClassName = "com.mygdx.game.desktop.Main"
-project.ext.assetsDir = new File("assets");
+project.ext.mainClassName = "com.mbrlabs.gdxsplash.Main"
+project.ext.assetsDir = new File("assets")
 
 task run(dependsOn: classes, type: JavaExec) {
     main = project.mainClassName

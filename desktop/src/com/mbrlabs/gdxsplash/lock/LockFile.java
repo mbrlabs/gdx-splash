@@ -1,11 +1,10 @@
-package com.mygdx.game.desktop.lock;
+package com.mbrlabs.gdxsplash.lock;
 
 
 import java.io.File;
 
+import com.mbrlabs.gdxsplash.Main;
 import org.apache.commons.io.FileUtils;
-
-import com.mygdx.game.desktop.Main;
 
 
 public class LockFile {

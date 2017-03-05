@@ -1,24 +1,24 @@
-package com.mygdx.game.desktop;
+package com.mbrlabs.gdxsplash;
 
 import java.io.File;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.mygdx.game.desktop.lock.LockFile;
-import com.mygdx.game.desktop.lock.LockWindow;
-import com.mygdx.game.desktop.splash.SplashScreen;
+import com.mbrlabs.gdxsplash.lock.LockFile;
+import com.mbrlabs.gdxsplash.lock.LockWindow;
+import com.mbrlabs.gdxsplash.splash.SplashScreen;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
 public class Main {
-
-    public static final String REGISTRY = "/home/marcus/.mundus/";
-    public static final String LOCK_FILE = REGISTRY + ".lock";
-    public static final String ICON_CACHE = REGISTRY + "cache/iconCache/";
+    public static final String HOME_DIR = FilenameUtils.concat(FileUtils.getUserDirectoryPath(), ".gdxsplash/");
+    public static final String LOCK_FILE = HOME_DIR + ".lock";
 
     public static void main(String[] arg) {
         // ensure we have a registry
-        File registry = new File(REGISTRY);
-        if(!registry.exists()) {
-            registry.mkdirs();
+        File home = new File(HOME_DIR);
+        if(!home.exists()) {
+            home.mkdirs();
         }
 
         // Start Log instance
@@ -33,7 +33,7 @@ public class Main {
 
     private static void launchSplashScreen() {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-        config.setTitle("Loading Mundus");
+        config.setTitle("Loading");
         config.setWindowIcon("icon.png");
         config.setResizable(false);
         config.setWindowedMode(SplashScreen.SCREEN_WIDTH, SplashScreen.SCREEN_HEIGHT);
@@ -44,7 +44,7 @@ public class Main {
 
     private static void launchLockWindow() {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-        config.setTitle("Mundus error");
+        config.setTitle("Error");
         config.setWindowIcon("icon.png");
         config.setResizable(false);
         config.setWindowedMode(LockWindow.WIDTH, LockWindow.HEIGHT);

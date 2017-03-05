@@ -1,4 +1,4 @@
-package com.mygdx.game.desktop.splash;
+package com.mbrlabs.gdxsplash.splash;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.kotcrab.vis.ui.VisUI;
-import com.mygdx.game.desktop.MainWindow;
+import com.mbrlabs.gdxsplash.MainWindow;
 
 public class SplashScreen extends ApplicationAdapter {
 
@@ -34,7 +34,7 @@ public class SplashScreen extends ApplicationAdapter {
         VisUI.load();
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
-        img = new Texture("MundusSplash.png");
+        img = new Texture("splash.png");
         window = ((Lwjgl3Graphics)Gdx.graphics).getWindow();
 
         // start loading
@@ -76,13 +76,9 @@ public class SplashScreen extends ApplicationAdapter {
         // config for main window
         Lwjgl3Application app = (Lwjgl3Application) Gdx.app;
         Lwjgl3WindowConfiguration config = new Lwjgl3WindowConfiguration();
-        config.setTitle("Mundus");
-        Graphics.DisplayMode dm = Lwjgl3ApplicationConfiguration.getDisplayMode();
-        if (System.getProperties().getProperty("os.name").toLowerCase().contains("mac")) {
-            config.setWindowedMode((int) (dm.width * 0.80f), (int) (dm.height * 0.80f));
-        } else {
-            config.setWindowedMode((int) (dm.width * 0.95f), (int) (dm.height * 0.95f));
-        }
+        config.setTitle("GdxSplash");
+        config.setWindowedMode(1280, 720);
+        config.setWindowSizeLimits(1, 1, 9999, 9999);
 
         // start main window and close this one
         app.newWindow(new MainWindow(loadingTask.getTexture()), config);

@@ -1,4 +1,4 @@
-package com.mygdx.game.desktop.lock;
+package com.mbrlabs.gdxsplash.lock;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -29,9 +29,9 @@ public class LockWindow extends ApplicationAdapter {
         root.setFillParent(true);
         root.align(Align.center);
 
-        VisLabel label = new VisLabel("It appears you have already opened an instance of Mundus.\n\n" +
-                "To ensure data intagrity this is not possible. If you are sure that no open Mundus " +
-                "instance exists delete the lock file ~/.mundus/.lock and restart the editor.");
+        VisLabel label = new VisLabel("It appears you have already opened an instance of this app.\n\n" +
+                "To ensure data integrity this is not possible. If you are sure that no open app " +
+                "instance exists delete the lock file ~/.gdxsplash/.lock and restart GdxSplash.");
         label.setAlignment(Align.center);
         label.setWrap(true);
         root.add(label).pad(10).grow().row();

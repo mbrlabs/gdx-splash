@@ -15,7 +15,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = "SplashTest"
+        appName = "GdxSplash"
         gdxVersion = '1.9.6'
 
         visuiVersion = '1.2.5'
@@ -34,14 +34,16 @@ project(":desktop") {
     apply plugin: "java"
 
     dependencies {
+        // libGDX
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
 
-        compile "commons-io:commons-io:$commonsIoVersion"
-
+        // visUI
         compile "com.kotcrab.vis:vis-ui:$visuiVersion"
 
+        // commonsIO
+        compile "commons-io:commons-io:$commonsIoVersion"
     }
 }
 

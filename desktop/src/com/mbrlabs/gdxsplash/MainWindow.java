@@ -1,4 +1,4 @@
-package com.mygdx.game.desktop;
+package com.mbrlabs.gdxsplash;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;

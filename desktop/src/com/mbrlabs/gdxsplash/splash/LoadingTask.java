@@ -1,4 +1,4 @@
-package com.mygdx.game.desktop.splash;
+package com.mbrlabs.gdxsplash.splash;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.kotcrab.vis.ui.util.async.AsyncTask;
