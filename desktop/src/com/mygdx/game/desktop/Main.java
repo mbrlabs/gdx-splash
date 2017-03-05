@@ -34,6 +34,7 @@ public class Main {
     private static void launchSplashScreen() {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setTitle("Loading Mundus");
+        config.setWindowIcon("icon.png");
         config.setResizable(false);
         config.setWindowedMode(SplashScreen.SCREEN_WIDTH, SplashScreen.SCREEN_HEIGHT);
         config.setDecorated(false);
@@ -44,6 +45,7 @@ public class Main {
     private static void launchLockWindow() {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setTitle("Mundus error");
+        config.setWindowIcon("icon.png");
         config.setResizable(false);
         config.setWindowedMode(LockWindow.WIDTH, LockWindow.HEIGHT);
         config.setWindowPosition(-1, -1);

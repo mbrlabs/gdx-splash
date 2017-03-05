@@ -16,12 +16,10 @@ allprojects {
     version = '1.0'
     ext {
         appName = "SplashTest"
-        gdxVersion = '1.9.4'
+        gdxVersion = '1.9.6'
 
         visuiVersion = '1.2.5'
         commonsIoVersion = '2.5'
-        jnaVersion = '4.1.0'
-        jnaPlatformVersion = '3.5.2'
     }
 
     repositories {
@@ -41,8 +39,6 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
 
         compile "commons-io:commons-io:$commonsIoVersion"
-        compile "net.java.dev.jna:jna:$jnaVersion"
-        compile "net.java.dev.jna:platform:$jnaPlatformVersion"
 
         compile "com.kotcrab.vis:vis-ui:$visuiVersion"
 

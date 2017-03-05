@@ -14,9 +14,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.kotcrab.vis.ui.VisUI;
-import com.mygdx.game.desktop.lock.LockFile;
 import com.mygdx.game.desktop.MainWindow;
-import com.mygdx.game.desktop.icon.MundusIcon;
 
 public class SplashScreen extends ApplicationAdapter {
 
@@ -37,7 +35,6 @@ public class SplashScreen extends ApplicationAdapter {
 
     @Override
     public void create () {
-        MundusIcon.setIcon();
         VisUI.load();
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
