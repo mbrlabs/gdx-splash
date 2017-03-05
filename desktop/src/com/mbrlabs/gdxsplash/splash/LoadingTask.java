@@ -1,7 +1,10 @@
 package com.mbrlabs.gdxsplash.splash;
 
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.kotcrab.vis.ui.util.async.AsyncTask;
+import com.mbrlabs.gdxsplash.assets.TextureAsset;
 
 
 public class LoadingTask extends AsyncTask {
@@ -9,13 +12,14 @@ public class LoadingTask extends AsyncTask {
     private static final int DURATION = 1600;
     private static final int STEP = 50;
 
-    private Texture texture;
-
     private boolean done;
     private float progress = 0;
 
+    TextureAsset textureAsset;
+
     public LoadingTask() {
         super("Loading Task");
+        textureAsset = new TextureAsset(new FileHandle("badlogic.jpg"));
     }
 
     @Override
@@ -29,9 +33,12 @@ public class LoadingTask extends AsyncTask {
             }
         }
 
+        // load from disk
+        textureAsset.load();
+
         // load assets on main thread
         executeOnGdx(() -> {
-            texture = new Texture("badlogic.jpg");
+            textureAsset.glLoad();
             done = true;
         });
     }
@@ -46,7 +53,7 @@ public class LoadingTask extends AsyncTask {
     }
 
     public Texture getTexture() {
-        return texture;
+        return textureAsset.getAsset();
     }
 
 }
