@@ -17,9 +17,10 @@
 package com.mbrlabs.gdxsplash.splash;
 
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.Array;
 import com.kotcrab.vis.ui.util.async.AsyncTask;
+import com.mbrlabs.gdxsplash.assets.DummyAsset;
 import com.mbrlabs.gdxsplash.assets.TextureAsset;
 
 
@@ -31,7 +32,8 @@ public class LoadingTask extends AsyncTask {
     private boolean done;
     private float progress = 0;
 
-    TextureAsset textureAsset;
+    private Array<DummyAsset> dummyAssets = new Array<>();
+    private TextureAsset textureAsset;
 
     public LoadingTask() {
         super("Loading Task");
@@ -40,23 +42,24 @@ public class LoadingTask extends AsyncTask {
 
     @Override
     protected void doInBackground() throws Exception {
-        // "load"
-        while(progress < DURATION) {
-            Thread.sleep(STEP);
-            synchronized (this) {
-                progress += STEP;
-                if(progress > DURATION) progress = DURATION;
-            }
+        // create some dummy assets
+        for(int i = 0; i < 50; i++) {
+            dummyAssets.add(new DummyAsset());
         }
 
-        // load from disk
+        // load real texture asset
         textureAsset.load();
+        executeOnGdx(() -> textureAsset.glLoad());
+        progress++;
 
-        // load assets on main thread
-        executeOnGdx(() -> {
-            textureAsset.glLoad();
-            done = true;
-        });
+        // load dummy assets
+        for(DummyAsset asset : dummyAssets) {
+            asset.load();
+            executeOnGdx(asset::glLoad);
+            progress++;
+        }
+
+        done = true;
     }
 
     public boolean isDone() {
@@ -65,7 +68,7 @@ public class LoadingTask extends AsyncTask {
 
     public synchronized int getProgress() {
         if(progress == 0) return 0;
-        return (int)((progress / DURATION) * 100);
+        return (int)((progress / (dummyAssets.size + 1)) * 100);
     }
 
     public Texture getTexture() {

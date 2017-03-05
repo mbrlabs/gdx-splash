@@ -30,6 +30,8 @@ import com.mbrlabs.gdxsplash.MainWindow;
 
 public class SplashScreen extends ApplicationAdapter {
 
+    private static final String TAG = SplashScreen.class.getSimpleName();
+
     public static final int SCREEN_HEIGHT = 460;
     public static final int SCREEN_WIDTH = 700;
 
@@ -85,7 +87,7 @@ public class SplashScreen extends ApplicationAdapter {
             launchMainWindow();
         }
 
-        Gdx.app.log(SplashScreen.class.getSimpleName(), "Loading Progress: " + loadingTask.getProgress());
+        Gdx.app.log(TAG, "Loading Progress: " + loadingTask.getProgress());
     }
 
     private void launchMainWindow() {
