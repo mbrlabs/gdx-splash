@@ -36,6 +36,11 @@ public class TextureAsset implements Asset<Texture> {
     }
 
     @Override
+    public String getName() {
+        return file.name();
+    }
+
+    @Override
     public void load() {
         this.pixmap = new Pixmap(file);
     }

@@ -24,6 +24,12 @@ package com.mbrlabs.gdxsplash.assets;
 public interface Asset<T> {
 
     /**
+     * Returns the asset name.
+     * @return  asset name
+     */
+    String getName();
+
+    /**
      * Loading, which can be performed without a OpenGl context (executed async).
      */
     void load();

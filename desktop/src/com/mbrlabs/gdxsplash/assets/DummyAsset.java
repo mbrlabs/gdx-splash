@@ -16,6 +16,8 @@
 
 package com.mbrlabs.gdxsplash.assets;
 
+import java.util.Random;
+
 /**
  *
  * @author Marcus Brummer
@@ -23,15 +25,32 @@ package com.mbrlabs.gdxsplash.assets;
  */
 public class DummyAsset implements Asset<Object> {
 
-    private static final int LOAD_TIME = 50;
-    private static final int GL_LOAD_TIME = 10;
+    private static final int MAX_LOAD_TIME = 150;
+    private static final int MAX_GL_LOAD_TIME = 50;
+
+    private int loadTime;
+    private int glLoadTime;
 
     private Object dummy;
+    private String name;
+
+    public DummyAsset(String name) {
+        this.name = name;
+
+        final Random rand = new Random();
+        this.loadTime = rand.nextInt(MAX_LOAD_TIME);
+        this.glLoadTime = rand.nextInt(MAX_GL_LOAD_TIME);
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
 
     @Override
     public void load() {
         try {
-            Thread.sleep(LOAD_TIME);
+            Thread.sleep(loadTime);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -40,7 +59,7 @@ public class DummyAsset implements Asset<Object> {
     @Override
     public void glLoad() {
         try {
-            Thread.sleep(GL_LOAD_TIME);
+            Thread.sleep(glLoadTime);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

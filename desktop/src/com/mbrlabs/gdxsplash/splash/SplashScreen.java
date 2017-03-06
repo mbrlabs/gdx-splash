@@ -20,10 +20,13 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.backends.lwjgl3.*;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.kotcrab.vis.ui.VisUI;
 import com.mbrlabs.gdxsplash.MainWindow;
@@ -36,11 +39,15 @@ public class SplashScreen extends ApplicationAdapter {
     public static final int SCREEN_WIDTH = 700;
 
     private static final int PROGRESS_BAR_HEIGHT = 10;
+    private static final int TEXT_X = 8;
+    private static final int TEXT_Y = PROGRESS_BAR_HEIGHT + 18;
+
     private static final Color TEAL = new Color(0x00b695ff);
     private static final Color WHITE = Color.WHITE.cpy();
 
     private ShapeRenderer shapeRenderer;
     private SpriteBatch batch;
+    private BitmapFont font;
     private Texture img;
 
     private Lwjgl3Window window;
@@ -53,6 +60,8 @@ public class SplashScreen extends ApplicationAdapter {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         img = new Texture("splash.png");
+        font = new BitmapFont(new FileHandle("font/openSans.fnt"), new FileHandle("font/openSans.png"), false, true);
+
         window = ((Lwjgl3Graphics)Gdx.graphics).getWindow();
 
         // start loading
@@ -72,8 +81,10 @@ public class SplashScreen extends ApplicationAdapter {
         // draw background image
         batch.begin();
         batch.draw(img, 0, 0);
-        batch.end();
 
+        // draw text
+        font.draw(batch, loadingTask.getMessage(), TEXT_X, TEXT_Y);
+        batch.end();
 
         // draw progress bar
         int width = (int) (Gdx.graphics.getWidth() * (loadingTask.getProgress() / 100f));
@@ -108,5 +119,6 @@ public class SplashScreen extends ApplicationAdapter {
         shapeRenderer.dispose();
         batch.dispose();
         img.dispose();
+        font.dispose();
     }
 }

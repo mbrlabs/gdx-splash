@@ -26,38 +26,39 @@ import com.mbrlabs.gdxsplash.assets.TextureAsset;
 
 public class LoadingTask extends AsyncTask {
 
-    private static final int DURATION = 1600;
-    private static final int STEP = 50;
-
     private boolean done;
     private float progress = 0;
+    private String message = "";
 
     private Array<DummyAsset> dummyAssets = new Array<>();
     private TextureAsset textureAsset;
 
     public LoadingTask() {
         super("Loading Task");
+        message = "Collecting assets";
         textureAsset = new TextureAsset(new FileHandle("badlogic.jpg"));
     }
 
     @Override
     protected void doInBackground() throws Exception {
         // create some dummy assets
-        for(int i = 0; i < 50; i++) {
-            dummyAssets.add(new DummyAsset());
+        for(int i = 0; i < 30; i++) {
+            dummyAssets.add(new DummyAsset("Asset " + i));
         }
-
-        // load real texture asset
-        textureAsset.load();
-        executeOnGdx(() -> textureAsset.glLoad());
-        progress++;
 
         // load dummy assets
         for(DummyAsset asset : dummyAssets) {
+            message = "Loading " + asset.getName();
             asset.load();
             executeOnGdx(asset::glLoad);
             progress++;
         }
+
+        // load real texture asset
+        message = "Loading " + textureAsset.getName();
+        textureAsset.load();
+        executeOnGdx(textureAsset::glLoad);
+        progress++;
 
         done = true;
     }
@@ -69,6 +70,10 @@ public class LoadingTask extends AsyncTask {
     public synchronized int getProgress() {
         if(progress == 0) return 0;
         return (int)((progress / (dummyAssets.size + 1)) * 100);
+    }
+
+    public synchronized String getMessage() {
+        return message;
     }
 
     public Texture getTexture() {
