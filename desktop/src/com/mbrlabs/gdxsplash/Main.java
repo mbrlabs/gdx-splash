@@ -18,14 +18,19 @@ package com.mbrlabs.gdxsplash;
 
 import java.io.File;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.mbrlabs.gdxsplash.lock.LockFile;
 import com.mbrlabs.gdxsplash.lock.LockWindow;
 import com.mbrlabs.gdxsplash.splash.SplashScreen;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 
+/**
+ * @author Marcus Brummer
+ * @version 05-03-2017
+ */
 public class Main {
     public static final String HOME_DIR = FilenameUtils.concat(FileUtils.getUserDirectoryPath(), ".gdxsplash/");
     public static final String LOCK_FILE = HOME_DIR + ".lock";
@@ -33,12 +38,12 @@ public class Main {
     public static void main(String[] arg) {
         // ensure we have a registry
         File home = new File(HOME_DIR);
-        if(!home.exists()) {
+        if (!home.exists()) {
             home.mkdirs();
         }
 
         // Start Log instance
-        if(LockFile.exists()) {
+        if (LockFile.exists()) {
             launchLockWindow();
         } else {
             LockFile.create();

@@ -23,7 +23,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.kotcrab.vis.ui.VisUI;
 
-
+/**
+ * @author Marcus Brummer
+ * @version 05-03-2017
+ */
 public class MainWindow extends ApplicationAdapter {
 
     private SpriteBatch batch;
@@ -35,12 +38,12 @@ public class MainWindow extends ApplicationAdapter {
     }
 
     @Override
-    public void create () {
+    public void create() {
         batch = new SpriteBatch();
     }
 
     @Override
-    public void render () {
+    public void render() {
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
@@ -49,7 +52,7 @@ public class MainWindow extends ApplicationAdapter {
     }
 
     @Override
-    public void dispose () {
+    public void dispose() {
         batch.dispose();
         img.dispose();
         VisUI.dispose();

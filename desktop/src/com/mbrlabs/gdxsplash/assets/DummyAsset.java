@@ -19,7 +19,6 @@ package com.mbrlabs.gdxsplash.assets;
 import java.util.Random;
 
 /**
- *
  * @author Marcus Brummer
  * @version 05-03-2017
  */

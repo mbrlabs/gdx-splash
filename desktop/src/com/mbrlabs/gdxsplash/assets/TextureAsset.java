@@ -21,7 +21,6 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
- *
  * @author Marcus Brummer
  * @version 05-03-2017
  */

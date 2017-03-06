@@ -25,6 +25,10 @@ import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 
+/**
+ * @author Marcus Brummer
+ * @version 05-03-2017
+ */
 public class LockWindow extends ApplicationAdapter {
 
     public static final int HEIGHT = 150;

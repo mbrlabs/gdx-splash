@@ -18,19 +18,24 @@ package com.mbrlabs.gdxsplash.splash;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
-import com.badlogic.gdx.backends.lwjgl3.*;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Graphics;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Window;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3WindowConfiguration;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.kotcrab.vis.ui.VisUI;
 import com.mbrlabs.gdxsplash.MainWindow;
 
+/**
+ * @author Marcus Brummer
+ * @version 05-03-2017
+ */
 public class SplashScreen extends ApplicationAdapter {
 
     private static final String TAG = SplashScreen.class.getSimpleName();
@@ -55,14 +60,14 @@ public class SplashScreen extends ApplicationAdapter {
 
 
     @Override
-    public void create () {
+    public void create() {
         VisUI.load();
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         img = new Texture("splash.png");
         font = new BitmapFont(new FileHandle("font/openSans.fnt"), new FileHandle("font/openSans.png"), false, true);
 
-        window = ((Lwjgl3Graphics)Gdx.graphics).getWindow();
+        window = ((Lwjgl3Graphics) Gdx.graphics).getWindow();
 
         // start loading
         loadingTask = new LoadingTask();
@@ -74,7 +79,7 @@ public class SplashScreen extends ApplicationAdapter {
     }
 
     @Override
-    public void render () {
+    public void render() {
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -94,7 +99,7 @@ public class SplashScreen extends ApplicationAdapter {
         shapeRenderer.end();
 
         // check if done loading
-        if(loadingTask.isDone()) {
+        if (loadingTask.isDone()) {
             launchMainWindow();
         }
 
@@ -115,7 +120,7 @@ public class SplashScreen extends ApplicationAdapter {
     }
 
     @Override
-    public void dispose () {
+    public void dispose() {
         shapeRenderer.dispose();
         batch.dispose();
         img.dispose();

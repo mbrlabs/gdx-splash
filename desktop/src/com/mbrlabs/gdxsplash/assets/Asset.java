@@ -17,7 +17,6 @@
 package com.mbrlabs.gdxsplash.assets;
 
 /**
- *
  * @author Marcus Brummer
  * @version 05-03-2017
  */
@@ -25,7 +24,8 @@ public interface Asset<T> {
 
     /**
      * Returns the asset name.
-     * @return  asset name
+     *
+     * @return asset name
      */
     String getName();
 
@@ -41,7 +41,8 @@ public interface Asset<T> {
 
     /**
      * Returns the loaded asset or null if not loaded.
-     * @return  loaded asset or null
+     *
+     * @return loaded asset or null
      */
     T getAsset();
 

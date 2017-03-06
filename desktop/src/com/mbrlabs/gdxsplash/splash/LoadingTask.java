@@ -23,7 +23,10 @@ import com.kotcrab.vis.ui.util.async.AsyncTask;
 import com.mbrlabs.gdxsplash.assets.DummyAsset;
 import com.mbrlabs.gdxsplash.assets.TextureAsset;
 
-
+/**
+ * @author Marcus Brummer
+ * @version 05-03-2017
+ */
 public class LoadingTask extends AsyncTask {
 
     private boolean done;
@@ -42,12 +45,12 @@ public class LoadingTask extends AsyncTask {
     @Override
     protected void doInBackground() throws Exception {
         // create some dummy assets
-        for(int i = 0; i < 30; i++) {
+        for (int i = 0; i < 30; i++) {
             dummyAssets.add(new DummyAsset("Asset " + i));
         }
 
         // load dummy assets
-        for(DummyAsset asset : dummyAssets) {
+        for (DummyAsset asset : dummyAssets) {
             message = "Loading " + asset.getName();
             asset.load();
             executeOnGdx(asset::glLoad);
@@ -68,8 +71,8 @@ public class LoadingTask extends AsyncTask {
     }
 
     public synchronized int getProgress() {
-        if(progress == 0) return 0;
-        return (int)((progress / (dummyAssets.size + 1)) * 100);
+        if (progress == 0) return 0;
+        return (int) ((progress / (dummyAssets.size + 1)) * 100);
     }
 
     public synchronized String getMessage() {

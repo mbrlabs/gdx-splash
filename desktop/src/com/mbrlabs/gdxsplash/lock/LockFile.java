@@ -18,10 +18,14 @@ package com.mbrlabs.gdxsplash.lock;
 
 import java.io.File;
 
-import com.mbrlabs.gdxsplash.Main;
 import org.apache.commons.io.FileUtils;
 
+import com.mbrlabs.gdxsplash.Main;
 
+/**
+ * @author Marcus Brummer
+ * @version 05-03-2017
+ */
 public class LockFile {
 
     public static boolean exists() {
