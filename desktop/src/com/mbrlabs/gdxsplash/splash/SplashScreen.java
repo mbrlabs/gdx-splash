@@ -30,6 +30,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.kotcrab.vis.ui.VisUI;
+import com.mbrlabs.gdxsplash.Main;
 import com.mbrlabs.gdxsplash.MainWindow;
 
 /**
@@ -65,7 +66,7 @@ public class SplashScreen extends ApplicationAdapter {
         batch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
         img = new Texture("splash.png");
-        font = new BitmapFont(new FileHandle("font/openSans.fnt"), new FileHandle("font/openSans.png"), false, true);
+        font = new BitmapFont(Gdx.files.internal("font/openSans.fnt"), Gdx.files.internal("font/openSans.png"), false, true);
 
         window = ((Lwjgl3Graphics) Gdx.graphics).getWindow();
 
@@ -98,12 +99,13 @@ public class SplashScreen extends ApplicationAdapter {
         shapeRenderer.rect(0, 0, width, PROGRESS_BAR_HEIGHT);
         shapeRenderer.end();
 
+        Gdx.app.log(TAG, "Loading Progress: " + loadingTask.getProgress());
+
         // check if done loading
         if (loadingTask.isDone()) {
+            Gdx.app.log(TAG, "Done. Launching main window.");
             launchMainWindow();
         }
-
-        Gdx.app.log(TAG, "Loading Progress: " + loadingTask.getProgress());
     }
 
     private void launchMainWindow() {
@@ -111,6 +113,7 @@ public class SplashScreen extends ApplicationAdapter {
         Lwjgl3Application app = (Lwjgl3Application) Gdx.app;
         Lwjgl3WindowConfiguration config = new Lwjgl3WindowConfiguration();
         config.setTitle("GdxSplash");
+        config.setWindowIcon(Main.WINDOW_ICON);
         config.setWindowedMode(1280, 720);
         config.setWindowSizeLimits(1, 1, 9999, 9999);
 

@@ -32,12 +32,15 @@ import com.mbrlabs.gdxsplash.splash.SplashScreen;
  * @version 05-03-2017
  */
 public class Main {
-    public static final String HOME_DIR = FilenameUtils.concat(FileUtils.getUserDirectoryPath(), ".gdxsplash/");
-    public static final String LOCK_FILE = HOME_DIR + ".lock";
+
+    public static final String WINDOW_ICON = "icon.png";
+
+    public static final String LOCK_DIR = FilenameUtils.concat(FileUtils.getUserDirectoryPath(), ".gdxsplash/");
+    public static final String LOCK_FILE = LOCK_DIR + ".lock";
 
     public static void main(String[] arg) {
-        // ensure we have a registry
-        File home = new File(HOME_DIR);
+        // ensure we have a lock folder
+        File home = new File(LOCK_DIR);
         if (!home.exists()) {
             home.mkdirs();
         }
@@ -55,7 +58,7 @@ public class Main {
     private static void launchSplashScreen() {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setTitle("Loading");
-        config.setWindowIcon("icon.png");
+        config.setWindowIcon(WINDOW_ICON);
         config.setResizable(false);
         config.setWindowedMode(SplashScreen.SCREEN_WIDTH, SplashScreen.SCREEN_HEIGHT);
         config.setDecorated(false);
@@ -66,7 +69,7 @@ public class Main {
     private static void launchLockWindow() {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setTitle("Error");
-        config.setWindowIcon("icon.png");
+        config.setWindowIcon(WINDOW_ICON);
         config.setResizable(false);
         config.setWindowedMode(LockWindow.WIDTH, LockWindow.HEIGHT);
         config.setWindowPosition(-1, -1);

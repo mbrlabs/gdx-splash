@@ -16,6 +16,7 @@
 
 package com.mbrlabs.gdxsplash.splash;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Array;
@@ -39,7 +40,7 @@ public class LoadingTask extends AsyncTask {
     public LoadingTask() {
         super("Loading Task");
         message = "Collecting assets";
-        textureAsset = new TextureAsset(new FileHandle("badlogic.jpg"));
+        textureAsset = new TextureAsset(Gdx.files.internal("badlogic.jpg"));
     }
 
     @Override
@@ -66,16 +67,16 @@ public class LoadingTask extends AsyncTask {
         done = true;
     }
 
-    public boolean isDone() {
+    boolean isDone() {
         return done;
     }
 
-    public synchronized int getProgress() {
+    public int getProgress() {
         if (progress == 0) return 0;
         return (int) ((progress / (dummyAssets.size + 1)) * 100);
     }
 
-    public synchronized String getMessage() {
+    public String getMessage() {
         return message;
     }
 
