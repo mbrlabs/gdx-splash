@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package com.mbrlabs.gdxsplash.lock;
+package io.mbrlabs.gdxsplash.lock;
 
 import java.io.File;
 
+import io.mbrlabs.gdxsplash.Main;
 import org.apache.commons.io.FileUtils;
-
-import com.mbrlabs.gdxsplash.Main;
 
 /**
  * @author Marcus Brummer

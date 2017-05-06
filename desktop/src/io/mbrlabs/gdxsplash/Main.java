@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.mbrlabs.gdxsplash;
+package io.mbrlabs.gdxsplash;
 
 import java.io.File;
 
+import io.mbrlabs.gdxsplash.splash.SplashScreen;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.mbrlabs.gdxsplash.lock.LockFile;
-import com.mbrlabs.gdxsplash.lock.LockWindow;
-import com.mbrlabs.gdxsplash.splash.SplashScreen;
+import io.mbrlabs.gdxsplash.lock.LockFile;
+import io.mbrlabs.gdxsplash.lock.LockWindow;
 
 /**
  * @author Marcus Brummer

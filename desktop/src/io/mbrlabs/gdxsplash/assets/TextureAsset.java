@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mbrlabs.gdxsplash.assets;
+package io.mbrlabs.gdxsplash.assets;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;

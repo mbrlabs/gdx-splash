@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package com.mbrlabs.gdxsplash.splash;
+package io.mbrlabs.gdxsplash.splash;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Array;
 import com.kotcrab.vis.ui.util.async.AsyncTask;
-import com.mbrlabs.gdxsplash.assets.DummyAsset;
-import com.mbrlabs.gdxsplash.assets.TextureAsset;
+import io.mbrlabs.gdxsplash.assets.DummyAsset;
+import io.mbrlabs.gdxsplash.assets.TextureAsset;
 
 /**
  * @author Marcus Brummer

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mbrlabs.gdxsplash.splash;
+package io.mbrlabs.gdxsplash.splash;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -22,7 +22,6 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Graphics;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Window;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3WindowConfiguration;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -30,8 +29,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.kotcrab.vis.ui.VisUI;
-import com.mbrlabs.gdxsplash.Main;
-import com.mbrlabs.gdxsplash.MainWindow;
+import io.mbrlabs.gdxsplash.Main;
+import io.mbrlabs.gdxsplash.MainWindow;
 
 /**
  * @author Marcus Brummer

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mbrlabs.gdxsplash;
+package io.mbrlabs.gdxsplash;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
